@@ -1,0 +1,433 @@
+/* Global Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff; /* Light greenish-beige for a more natural background */
+  color: #3a3a3a; /* Slightly darker gray for better contrast */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.App {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+/* Header Section */
+.header {
+  background: linear-gradient(
+      to right,
+      rgba(0, 128, 0, 0.7),
+      rgba(255, 255, 255, 0)
+    ),
+    url("https://www.compass-group.com/content/compass-group/corporate/en/sustainability/planet/reducing-food-waste/_jcr_content/par/image.img.png/1692717477421.png")
+      no-repeat center/cover;
+  color: #fff;
+  text-align: center;
+  padding: 6rem 0;
+  width: 100%;
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+.header .container {
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 10px rgba(0, 128, 0, 0.2); /* Greenish shadow for eco-friendly tone */
+}
+
+.header h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 10px rgba(0, 128, 0, 0.2); /* Greenish shadow for eco-friendly tone */
+}
+
+/* Hero Section */
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  width: 100%;
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+.hero-image {
+  max-width: 50%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-image:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow effect */
+}
+
+.benefit-summary {
+  max-width: 500px;
+  padding: 1rem;
+  margin-left: 2rem;
+  text-align: left; /* Ensure text aligns properly */
+}
+
+.hero-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.benefit-summary-2 {
+  /* flex: 1; */
+  padding: 12rem;
+  max-width: 430px;
+  /* margin-left: -110px; */
+  display: flex;
+  text-align: left;
+  align-items: center;
+}
+
+.hero-image-2 {
+  max-width: 50%;
+  height: auto;
+  border-radius: 10px;
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-right: 10px;
+}
+
+.hero-image-2:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow effect */
+}
+
+/* Responsive Design for Hero Section */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-image {
+    width: 80%;
+    margin-bottom: 2rem;
+  }
+
+  .hero-2 {
+    flex-direction: column;
+    height: auto; /* Adjust height for smaller screens */
+  }
+
+  .benefit-summary-2 {
+    max-width: 100%;
+  }
+
+  .hero-image-2 {
+    width: 80%;
+    margin-bottom: 2rem;
+  }
+}
+
+/* CTA Section */
+.cta {
+  background-color: #f39c12; /* Bright orange, representing urgency in reducing waste */
+  padding: 3rem 0;
+  text-align: center;
+  width: 100%; /* Adjust to fit viewport */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+.cta h3 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.cta-button {
+  background: linear-gradient(
+    135deg,
+    #6b8e23,
+    #556b2f
+  ); /* Gradient background */
+  color: #fff;
+  padding: 0.75rem 2rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px; /* Slightly larger border-radius for a softer look */
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease; /* Smooth background and transform transitions */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+}
+
+.cta-button:hover {
+  background: linear-gradient(
+    135deg,
+    #556b2f,
+    #3a5f21
+  ); /* Darker gradient on hover */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow effect on hover */
+}
+
+.cta-button:active {
+  transform: translateY(1px); /* Slight press effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Reset shadow effect */
+}
+
+/* Benefits Section */
+.benefits {
+  padding: 3rem 1rem;
+  background-color: #fff;
+  width: 100%;
+}
+
+.benefits h3 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.benefits ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.benefits ul li {
+  background-color: #e6f2e6;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-size: 1.1rem;
+}
+
+.benefits ul li:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+/* Social Proof Section */
+.social-proof {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.social-proof h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.testimonial {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  border-left-color: #556b2f;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial blockquote {
+  margin: 0;
+  font-style: italic;
+}
+
+/* Footer Section */
+.footer {
+  background-color: #2f4f2f;
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  box-sizing: border-box;
+}
+
+.footer-info {
+  margin-bottom: 1rem;
+}
+
+.footer-info h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.footer-info p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
+.newsletter h4 {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.newsletter form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 600px;
+  width: 100%;
+}
+
+.newsletter input[type="email"] {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.newsletter button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #6b8e23;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.newsletter button:hover {
+  background-color: #556b2f;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-image {
+    width: 80%;
+    margin-bottom: 2rem;
+  }
+
+  .benefits ul {
+    grid-template-columns: 1fr;
+  }
+
+  .benefit-summary {
+    width: 100%;
+  }
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: #3a5f21;
+  color: white;
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo h2 {
+  font-size: 1.8rem;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links li {
+  padding: 0.5rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ffcc00;
+}
+
+@media (max-width: 768px) {
+  .hamburger .bar {
+    background-color: #fff; /* Keep white for contrast */
+  }
+}
+.social-icons {
+  display: flex;
+  justify-content: center; /* Center the icons horizontally */
+  gap: 15px; /* Space between icons */
+  padding: 10px; /* Padding around the icons */
+}
+
+.social-icons a {
+  color: #000; /* Default color for icons */
+  font-size: 24px; /* Size of the icons */
+  text-decoration: none; /* Remove underline from links */
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.social-icons a:hover {
+  color: #71d96f; /* Color change on hover (you can adjust this to your preference) */
+}
