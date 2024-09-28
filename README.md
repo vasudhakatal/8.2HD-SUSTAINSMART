@@ -24,7 +24,7 @@ The **Smart Food Management System** is a web application designed to help users
 
 ## Technologies Used
 
-- **Frontend**: React, CSS/SCSS
+- **Frontend**: React, CSS
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Deployment**: Vercel
