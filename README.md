@@ -24,7 +24,7 @@ The **Smart Food Management System** is a web application designed to help users
 
 ## Technologies Used
 
-- **Frontend**: React, Redux, CSS/SCSS
+- **Frontend**: React, CSS/SCSS
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Deployment**: Vercel
@@ -44,13 +44,3 @@ To set up the project locally, follow these steps:
 ```bash
 git clone https://github.com/yourusername/smart-food-management-system.git
 cd smart-food-management-system
-
-
-Install Dependencies
-For both the backend and frontend:
-
-Navigate to the backend directory and install dependencies:
-cd backend
-npm install
-
-
