@@ -1,0 +1,168 @@
+/* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%; /* Make html and body full height */
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f8f9; /* Light background for a clean look */
+    color: #333; /* Dark text for contrast */
+  }
+  
+  /* Dashboard container */
+  .userdashboard-container {
+    display: flex;
+    height: 100vh; /* Full height of the viewport */
+  }
+  
+  /* Sidebar styles */
+  .sidebar {
+    width: 250px;
+    background-color: #4caf50; /* Green color for eco theme */
+    color: white;
+    position: relative; /* Ensure it's positioned correctly */
+  }
+  
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .userdashboard-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  /* Sidebar navigation */
+  .sidebar-nav {
+    margin-top: 1rem;
+  }
+  
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: background 0.3s ease;
+  }
+  
+  .sidebar-link:hover,
+  .sidebar-link.active {
+    background-color: rgba(255, 255, 255, 0.2); /* Light hover effect */
+  }
+  
+  .sidebar-link .icon {
+    margin-right: 10px;
+  }
+  
+  /* Main content styles */
+  .main-content {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto; /* Allow scrolling if content overflows */
+  }
+  
+  .main-header {
+    margin-bottom: 2rem;
+  }
+  
+  .greeting {
+    font-size: 1.5rem;
+    color: #4caf50; /* Matching green for the greeting */
+  }
+  
+  /* Content section */
+  .content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Card styles */
+  .card {
+    background-color: white; /* White cards for contrast */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+  }
+  
+  /* Card title and description */
+  .card-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .card-description {
+    margin-bottom: 1rem;
+    color: #555; /* Slightly darker for better readability */
+  }
+  
+  .input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  
+  .input:focus {
+    border-color: #4caf50; /* Green border on focus */
+  }
+  
+  .btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  
+  /* Tips list */
+  .tips-list {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  /* Impact stats */
+  .impact-stats {
+    background-color: #e8f5e9; /* Light green background */
+    padding: 1rem;
+    border-radius: 4px;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 70%; /* Make sidebar wider on smaller screens */
+    }
+  
+    .sidebar-link {
+      padding: 0.8rem; /* Adjust padding for smaller screens */
+    }
+  
+    .main-content {
+      padding: 1rem; /* Reduce padding on smaller screens */
+    }
+  }
+  

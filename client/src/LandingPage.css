@@ -41,7 +41,12 @@ body {
   width: 100%;
   box-sizing: border-box; /* Include padding and border in width calculation */
 }
-
+.hea{
+  font-size: 1.8rem;
+  margin: 0;
+  letter-spacing: 1px;
+  color:white;
+}
 .header .container {
   text-align: center;
 }
