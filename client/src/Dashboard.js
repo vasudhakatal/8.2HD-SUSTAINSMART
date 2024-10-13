@@ -39,19 +39,30 @@ const AdminDashboard = () => {
 
   const fetchProfile = async () => {
     setLoading(true);
+    const token = localStorage.getItem("token");
+  
     try {
-      const response = await fetch("/api/user/profile", {
+      const response = await fetch("http://localhost:5000/api/auth/profile", {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${authToken}`, // Include the token in the header
+          Authorization: `Bearer ${token}`,
         },
       });
+  
       if (!response.ok) {
         throw new Error("Failed to fetch user profile");
       }
+  
       const data = await response.json();
-      setProfile(data.name); // Set user name from response
+      console.log("Response Data:", data);
+      setProfile({
+        name: data.username,
+        email: "", // You may need to add a separate API call to fetch the email
+        role: data.role,
+        avatar: "", // You may need to add a separate API call to fetch the avatar
+      });
     } catch (error) {
+      console.error("Error fetching profile:", error);
       setError("Failed to fetch user profile");
     } finally {
       setLoading(false);
@@ -186,14 +197,15 @@ const AdminDashboard = () => {
 
   const handleAddPost = async (e) => {
     e.preventDefault();
-
+  
     const newPost = {
       content: communityPost,
+      author: profile.name, // Add the author's name from the profile state
     };
-
+  
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch("http://localhost:5000/api/posts", {
+      const response = await fetch("http://localhost:5000/api/posts/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -201,9 +213,9 @@ const AdminDashboard = () => {
         },
         body: JSON.stringify(newPost),
       });
-
+  
       if (!response.ok) throw new Error("Error creating post.");
-
+  
       const addedPost = await response.json();
       setPosts([...posts, addedPost]);
       setCommunityPost("");
@@ -213,6 +225,7 @@ const AdminDashboard = () => {
       toast.error("Error adding post.");
     }
   };
+  
 
   const handleDeletePost = async (id) => {
     const token = localStorage.getItem("token");
@@ -236,38 +249,53 @@ const AdminDashboard = () => {
     e.preventDefault();
     const token = localStorage.getItem("token");
 
-    try {
-      const response = await fetch("http://localhost:5000/api/auth/profile", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "x-auth-token": token,
-        },
-        body: JSON.stringify(editableProfile),
-      });
-
-      if (!response.ok) throw new Error("Error updating profile.");
-
-      const updatedProfile = await response.json();
-      setProfile({
-        name: updatedProfile.username,
-        email: updatedProfile.email,
-        role: updatedProfile.role,
-        avatar: updatedProfile.avatar || "",
-      });
-      setIsProfileOpen(false);
-      toast.success("Profile updated successfully!");
-    } catch (err) {
-      console.error(err);
-      toast.error("Error updating profile.");
+    // Check if at least one field is present in editableProfile
+    const { name, email, role } = editableProfile;
+    if (!name && !email && !role) {
+        toast.error("Please provide at least one field to update.");
+        return;
     }
-  };
+
+    try {
+        const response = await fetch("http://localhost:5000/api/auth/profile", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`, // Ensure Authorization header is correct
+            },
+            body: JSON.stringify(editableProfile), // Ensure editableProfile contains updated data
+        });
+
+        if (!response.ok) {
+            const errorResponse = await response.json();
+            throw new Error(errorResponse.msg || "Error updating profile.");
+        }
+
+        const updatedProfile = await response.json();
+
+        // Use previous profile data for fields that are not in editableProfile
+        setProfile((prevProfile) => ({
+            ...prevProfile, // Spread previous profile data
+            name: editableProfile.name || prevProfile.name, // Update name if provided
+            email: editableProfile.email || prevProfile.email, // Update email if provided
+            role: editableProfile.role || prevProfile.role, // Update role if provided
+            avatar: updatedProfile.avatar || prevProfile.avatar || "", // Update avatar if provided
+        }));
+
+        setIsProfileOpen(false);
+        toast.success("Profile updated successfully!");
+    } catch (err) {
+        console.error(err);
+        toast.error(err.message || "Error updating profile."); // Show specific error message
+    }
+};
+
 
   return (
     <div className="admin-dashboard-container">
       <aside className="admin-sidebar">
         <div className="admin-sidebar-header">
-          <h1 className="admin-dashboard-title">Dashboard</h1>
+        <h1 className="admin-dashboard-title">Hi, {profile.name}!</h1>
           <button
             className="profile-button"
             onClick={() => setIsProfileOpen(!isProfileOpen)}
@@ -306,7 +334,7 @@ const AdminDashboard = () => {
         </nav>
       </aside>
 
-      <main className="admin-main-content"> 
+      <main className="admin-main-content">
         {activeSection === "food" && (
           <div className="food-section">
             <h2>Food Items</h2>
@@ -388,35 +416,43 @@ const AdminDashboard = () => {
           </div>
         )} */}
 
-{isProfileOpen && (
-  <div className="modal-overlay">
-    <div className="modal-content">
-      <h2>Edit Profile</h2>
-      <form onSubmit={handleUpdateProfile}>
-        <input
-          type="text"
-          value={editableProfile.name}
-          placeholder="Name"
-          onChange={(e) =>
-            setEditableProfile({ ...editableProfile, name: e.target.value })
-          }
-        />
-        <input
-          type="email"
-          value={editableProfile.email}
-          placeholder="Email"
-          onChange={(e) =>
-            setEditableProfile({ ...editableProfile, email: e.target.value })
-          }
-        />
-        <div className="button-container">
-          <button type="submit">Update Profile</button>
-          <button type="button" onClick={() => setIsProfileOpen(false)}>Close</button>
-        </div>
-      </form>
-    </div>
-  </div>
-)}
+        {isProfileOpen && (
+          <div className="modal-overlay">
+            <div className="modal-content">
+              <h2>Edit Profile</h2>
+              <form onSubmit={handleUpdateProfile}>
+                <input
+                  type="text"
+                  value={editableProfile.name}
+                  placeholder="Name"
+                  onChange={(e) =>
+                    setEditableProfile({
+                      ...editableProfile,
+                      name: e.target.value,
+                    })
+                  }
+                />
+                <input
+                  type="email"
+                  value={editableProfile.email}
+                  placeholder="Email"
+                  onChange={(e) =>
+                    setEditableProfile({
+                      ...editableProfile,
+                      email: e.target.value,
+                    })
+                  }
+                />
+                <div className="button-container">
+                  <button type="submit">Update Profile</button>
+                  <button type="button" onClick={() => setIsProfileOpen(false)}>
+                    Close
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
       </main>
 
       <ToastContainer />

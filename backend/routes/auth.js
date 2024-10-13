@@ -94,3 +94,30 @@ router.get('/profile', authenticateToken, async (req, res) => {
 });
 
 module.exports = router;
+
+// Update User Profile
+// Update User Profile
+router.put('/profile', authenticateToken, async (req, res) => {
+    const { username, role } = req.body; // Adjusted fields for update
+
+    // Validate that at least one field is provided for update
+    if (!username && !role) {
+        return res.status(400).json({ msg: 'Please provide at least one field to update.' });
+    }
+
+    try {
+        const updatedAdmin = await Admin.findByIdAndUpdate(
+            req.user.id,
+            { username, role }, // Update the fields based on the request
+            { new: true, runValidators: true } // Return the updated document
+        ).select('-password'); // Exclude password from the result
+
+        if (!updatedAdmin) {
+            return res.status(404).json({ msg: 'User not found' });
+        }
+        res.json(updatedAdmin); // Return the updated profile
+    } catch (error) {
+        console.error('Profile Update Error:', error);
+        res.status(500).json({ msg: 'Server error while updating profile' });
+    }
+});
