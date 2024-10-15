@@ -1,168 +1,386 @@
-/* Reset some basic styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* User Dashboard Layout */
+.user-dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.user-dashboard__sidebar {
+  width: 250px;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 20px;
+}
+
+.user-dashboard__user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.user-dashboard__avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-dashboard__username {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.user-dashboard__nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-dashboard__nav-button {
+  background: none;
+  border: none;
+  color: #ecf0f1;
+  padding: 10px;
+  margin: 5px 0;
+  text-align: left;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.user-dashboard__nav-button:hover {
+  background-color: #34495e;
+}
+
+.user-dashboard__nav-button--active {
+  background-color: #3498db;
+}
+
+.user-dashboard__icon {
+  margin-right: 10px;
+}
+
+/* Main Content Area */
+.user-dashboard__main {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.user-dashboard__header {
+  margin-bottom: 20px;
+}
+
+.user-dashboard__title {
+  font-size: 28px;
+  color: #2c3e50;
+}
+
+.user-dashboard__section {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-dashboard__section-title {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.user-dashboard__section-description {
+  margin-bottom: 20px;
+  color: #7f8c8d;
+}
+
+/* Recipes Section */
+.user-dashboard__recipe-search {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.user-dashboard__recipe-input {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px 0 0 4px;
+}
+
+.user-dashboard__recipe-button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.user-dashboard__recipes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.user-dashboard__recipe-card {
+  background-color: #ecf0f1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-dashboard__recipe-title {
+  font-size: 18px;
+  padding: 10px;
+  background-color: #3498db;
+  color: white;
+  margin: 0;
+}
+
+.user-dashboard__recipe-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.user-dashboard__recipe-info {
+  padding: 10px;
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+/* Sharing Section */
+.user-dashboard__posts-list {
+  display: grid;
+  gap: 20px;
+}
+
+.user-dashboard__post-card {
+  background-color: #ecf0f1;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-dashboard__post-author {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.user-dashboard__post-date {
+  font-size: 12px;
+  color: #7f8c8d;
+  margin-bottom: 10px;
+}
+
+.user-dashboard__post-content {
+  font-size: 14px;
+}
+
+/* Tips Section */
+.user-dashboard__tips-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-dashboard__tip-item {
+  background-color: #ecf0f1;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Inventory Section */
+.user-dashboard__inventory-list {
+  display: grid;
+  gap: 15px;
+}
+
+.user-dashboard__inventory-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ecf0f1;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-dashboard__inventory-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.user-dashboard__inventory-expiry {
+  font-size: 12px;
+  color: #7f8c8d;
+}
+
+.user-dashboard__inventory-quantity {
+  font-weight: bold;
+  color: #3498db;
+}
+
+/* Impact Section */
+.user-dashboard__impact-description {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.user-dashboard__impact-chart {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .user-dashboard {
+    flex-direction: column;
   }
-  
-  html, body {
-    height: 100%; /* Make html and body full height */
-  }
-  
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f5f8f9; /* Light background for a clean look */
-    color: #333; /* Dark text for contrast */
-  }
-  
-  /* Dashboard container */
-  .userdashboard-container {
-    display: flex;
-    height: 100vh; /* Full height of the viewport */
-  }
-  
-  /* Sidebar styles */
-  .sidebar {
-    width: 250px;
-    background-color: #4caf50; /* Green color for eco theme */
-    color: white;
-    position: relative; /* Ensure it's positioned correctly */
-  }
-  
-  .sidebar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  
-  .userdashboard-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  /* Sidebar navigation */
-  .sidebar-nav {
-    margin-top: 1rem;
-  }
-  
-  .sidebar-link {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
+
+  .user-dashboard__sidebar {
     width: 100%;
-    text-align: left;
-    transition: background 0.3s ease;
+    padding: 10px;
   }
-  
-  .sidebar-link:hover,
-  .sidebar-link.active {
-    background-color: rgba(255, 255, 255, 0.2); /* Light hover effect */
+
+  .user-dashboard__nav {
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
   }
-  
-  .sidebar-link .icon {
-    margin-right: 10px;
-  }
-  
-  /* Main content styles */
-  .main-content {
-    flex: 1;
-    padding: 2rem;
-    overflow-y: auto; /* Allow scrolling if content overflows */
-  }
-  
-  .main-header {
-    margin-bottom: 2rem;
-  }
-  
-  .greeting {
-    font-size: 1.5rem;
-    color: #4caf50; /* Matching green for the greeting */
-  }
-  
-  /* Content section */
-  .content {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-  }
-  
-  /* Card styles */
-  .card {
-    background-color: white; /* White cards for contrast */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-  }
-  
-  /* Card title and description */
-  .card-title {
-    display: flex;
+
+  .user-dashboard__nav-button {
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 1rem;
+    text-align: center;
+    padding: 5px;
   }
-  
-  .card-description {
-    margin-bottom: 1rem;
-    color: #555; /* Slightly darker for better readability */
+
+  .user-dashboard__icon {
+    margin-right: 0;
+    margin-bottom: 5px;
   }
-  
-  .input {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 1rem;
+
+  .user-dashboard__recipes-list,
+  .user-dashboard__posts-list,
+  .user-dashboard__inventory-list {
+    grid-template-columns: 1fr;
   }
-  
-  .input:focus {
-    border-color: #4caf50; /* Green border on focus */
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75); /* Translucent dark background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensures the modal is above everything */
+}
+
+/* Modal Content */
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out; /* Smooth entrance animation */
+}
+
+/* Close Button */
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+  color: #ff5e57;
+}
+
+/* Modal Heading */
+.modal-content h2 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Textarea Styling */
+.modal-content textarea {
+  width: 100%;
+  height: 150px;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  resize: none;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.3s ease;
+}
+
+.modal-content textarea:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+/* Submit Button */
+.submit-post-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-post-btn:hover {
+  background-color: #45a049;
+}
+
+/* Fade-in Animation for Modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
   }
-  
-  .btn {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 0.7rem 1.2rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
-  
-  .btn:hover {
-    background-color: #45a049; /* Darker green on hover */
-  }
-  
-  /* Tips list */
-  .tips-list {
-    list-style-type: disc;
-    margin-left: 20px;
-  }
-  
-  /* Impact stats */
-  .impact-stats {
-    background-color: #e8f5e9; /* Light green background */
-    padding: 1rem;
-    border-radius: 4px;
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    .sidebar {
-      width: 70%; /* Make sidebar wider on smaller screens */
-    }
-  
-    .sidebar-link {
-      padding: 0.8rem; /* Adjust padding for smaller screens */
-    }
-  
-    .main-content {
-      padding: 1rem; /* Reduce padding on smaller screens */
-    }
-  }
-  
+}

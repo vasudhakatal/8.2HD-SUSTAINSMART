@@ -1,33 +1,28 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import Link for routing
+import { Link } from "react-router-dom"; // Remove useNavigate since we don't need it
 import "./LandingPage.css";
 
 const LandingPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [email, setEmail] = useState(""); // Add state for email
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleCTAClick = () => {
-    navigate("/login"); // Navigate to loginsignup page
-  };
-
   // Function to handle newsletter subscription
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent page reload
+    e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/send-newsletter', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5000/send-newsletter", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          recipients: [email], // Send the email to the backend
+          recipients: [email],
           subject: "Subscription Confirmation",
           text: "Thank you for subscribing to our newsletter!",
         }),
@@ -49,21 +44,18 @@ const LandingPage = () => {
       <nav className="navbar">
         <div className="container">
           <div className="logo">
-            <h2 className="hea">Sustain Smart</h2>
+            <h2 className="hea" href = "/">Sustain Smart</h2>
           </div>
           <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
             <ul>
               <li>
-                <Link to="#home">Home</Link>
+                <a href="#features">Features</a>
               </li>
               <li>
-                <Link to="#features">Features</Link>
+                <a href="#cta">Get Started</a>
               </li>
               <li>
-                <Link to="#cta">Get Started</Link>
-              </li>
-              <li>
-                <Link to="#contact">Contact</Link>
+                <a href="#contact">Contact</a>
               </li>
               <li>
                 <Link to="/login">Login</Link>
@@ -78,6 +70,7 @@ const LandingPage = () => {
         </div>
       </nav>
 
+      {/* This section is already treated as the homepage */}
       <header className="header" id="home">
         <h1>Sustain Smart for You</h1>
         <h2 className="hea">Smarter Choices for Sustainable Features</h2>
@@ -86,9 +79,9 @@ const LandingPage = () => {
       {/* Hero Section */}
       <section className="hero">
         <img
-          src={require("./1.png")} // Ensure the correct image path
-          alt="Smart kitchen interface showing food freshness tracking" // Good descriptive alt text
-          className="hero-image" // Make sure this class is defined in your CSS
+          src={require("./1.png")}
+          alt="Smart kitchen interface showing food freshness tracking"
+          className="hero-image"
         />
         <div className="benefit-summary">
           <p>
@@ -99,7 +92,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* 2 */}
+      {/* Another Hero Section */}
       <section className="hero-2">
         <div className="benefit-summary-2">
           <p>
@@ -115,15 +108,18 @@ const LandingPage = () => {
         />
       </section>
 
-      {/* Call to Action */}
+      {/* Call to Action Section */}
       <section className="cta" id="cta">
         <h3>Start Your Free Trial Today!</h3>
-        <button className="cta-button" onClick={handleCTAClick}>
+        <button
+          className="cta-button"
+          onClick={() => (window.location.href = "/login")}
+        >
           Join the movement to reduce food waste
         </button>
       </section>
 
-      {/* Benefits Section */}
+      {/* Features Section */}
       <section className="benefits" id="features">
         <h3>Why Choose Us?</h3>
         <ul>
@@ -135,7 +131,7 @@ const LandingPage = () => {
         </ul>
       </section>
 
-      {/* Social Proof Section */}
+      {/* Testimonials Section */}
       <section className="social-proof">
         <h3>What Our Users Say</h3>
         <div className="testimonial">
@@ -159,19 +155,19 @@ const LandingPage = () => {
 
       {/* Footer Section */}
       <footer className="footer" id="contact">
-         <div className="newsletter">
+        <div className="newsletter">
           <h4>Subscribe to Our Newsletter</h4>
           <form onSubmit={handleSubmit}>
             <input
               type="email"
               placeholder="Enter your email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)} // Update email state
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
             <button type="submit">Subscribe</button>
           </form>
-          {message && <p>{message}</p>} {/* Display subscription message */}
+          {message && <p>{message}</p>}
         </div>
 
         <div className="footer-info">
