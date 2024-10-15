@@ -73,7 +73,7 @@ const LandingPage = () => {
       {/* This section is already treated as the homepage */}
       <header className="header" id="home">
         <h1>Sustain Smart for You</h1>
-        <h2 className="hea">Smarter Choices for Sustainable Features</h2>
+        <h2 className="hea">Smarter Choices for Sustainable Future</h2>
       </header>
 
       {/* Hero Section */}
